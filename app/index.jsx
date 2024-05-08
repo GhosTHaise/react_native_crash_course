@@ -3,6 +3,7 @@ import { Image, ScrollView, StyleSheet, Text, View } from 'react-native';
 import { Link } from 'expo-router';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { images } from '../constants';
+import CustomButton from '../components/CustomButton';
 export default function App() {
     return (
         <SafeAreaView className='bg-primary h-full'>
@@ -37,6 +38,8 @@ export default function App() {
                         Where creativity meets innovation :
                         embark on a journey of limitless exploration with Aora.
                     </Text>
+
+                    <CustomButton />
                 </View>
             </ScrollView>
         </SafeAreaView>
