@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { Image, ScrollView, View, Text } from 'react-native'
+import { Image, ScrollView, View, Text, Alert } from 'react-native'
 import { SafeAreaView } from 'react-native-safe-area-context'
 
 import { images } from '../../constants';
@@ -17,8 +17,8 @@ const SignUp = () => {
 
     const [isSubmitting, setIsSubmitting] = useState(false)
 
-    const handleSubmit = () => {
-        createUser()
+    const handleSubmit = async () => {
+
     }
 
     return (
