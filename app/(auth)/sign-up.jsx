@@ -29,9 +29,7 @@ const SignUp = () => {
                 form.password,
                 form.username
             )
-
             //set is to global state ...
-
             router.replace("/home")
         } catch (error) {
             Alert.alert('Error', error.message)
