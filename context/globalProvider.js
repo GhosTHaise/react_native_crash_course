@@ -4,21 +4,21 @@ import { getCurrentUser } from "../lib/appwrite";
 const GlobalContext = createContext()
 export const useGlobalContext = () => useContext(GlobalContext);
 
-const GlobhalProvider = ({ children }) => {
+const GlobalProvider = ({ children }) => {
     const [isLoggedIn, setIsLoggedIn] = useState(false);
     const [user, setUser] = useState(null);
     const [isLoading, setIsLoading] = useState(true);
 
     useEffect(() => {
         getCurrentUser().then((response) => {
-            if (res) {
+            if (response) {
                 setIsLoggedIn(true)
-                setUser(res)
+                setUser(response)
             } else {
                 setIsLoggedIn(false)
                 setUser(null)
             }
-        }).catch((error) => console.log(error));
+        }).catch((error) => console.log(error)).finally(setIsLoading(false));
     }, []);
 
     return (
@@ -28,7 +28,8 @@ const GlobhalProvider = ({ children }) => {
                 setIsLoading,
                 user,
                 setUser,
-                isLoggedIn
+                isLoggedIn,
+                setIsLoggedIn
             }}
         >
             {
@@ -37,3 +38,5 @@ const GlobhalProvider = ({ children }) => {
         </GlobalContext.Provider>
     )
 }
+
+export default GlobalProvider
