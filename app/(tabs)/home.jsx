@@ -9,10 +9,10 @@ import EmptyState from '../../components/EmptyState'
 const Home = () => {
     return (
         <SafeAreaView
-            className='bg-primary'
+            className='bg-primary h-full'
         >
             <FlatList
-                data={[]}
+                data={[{ $id: 1 }]}
                 keyExtractor={(item) => item.$id}
                 renderItem={({ item }) => (
                     <Text className='text-3xl text-white'>
@@ -52,7 +52,7 @@ const Home = () => {
                 ListEmptyComponent={() => (
                     <EmptyState
                         title="No Videos Found"
-                        subtitle="Be the first one to upload a video."
+                        subtitle="Be the first one to upload a video ."
                     />
                 )}
             />
