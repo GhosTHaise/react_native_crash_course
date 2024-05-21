@@ -6,35 +6,17 @@ import SearchInput from '../../components/SearchInput'
 import Trending from '../../components/Trending'
 import EmptyState from '../../components/EmptyState'
 import { getAllPosts } from '../../lib/appwrite'
+import useAppwrite from '../../lib/useAppwrite'
 
 const Home = () => {
-    const [data, setData] = useState([])
-    const [isLoading, setIsLoading] = useState(true)
+    const { data: posts, refetch, isLoading } = useAppwrite(getAllPosts)
+
     const [refreshing, setRefreshing] = useState(false)
 
-
-    useEffect(() => {
-        const fetchData = async () => {
-            setIsLoading(true)
-
-            try {
-                const response = await getAllPosts();
-
-                setData(response);
-            } catch (error) {
-                Alert("Error", error.message);
-            } finally {
-                setIsLoading(false)
-            }
-        }
-
-        fetchData();
-    }, [])
-
-    console.log(data);
     const onRefresh = async () => {
         setRefreshing(true);
         //re call videos -> if any new videos appeared
+        await refetch();
         setRefreshing(false);
     }
     return (
@@ -42,11 +24,11 @@ const Home = () => {
             className='bg-primary h-full'
         >
             <FlatList
-                data={[{ $id: 1 }]}
+                data={posts}
                 keyExtractor={(item) => item.$id}
                 renderItem={({ item }) => (
                     <Text className='text-3xl text-white'>
-                        {item.$id}
+                        {item.title}
                     </Text>
                 )}
                 ListHeaderComponent={() => (
