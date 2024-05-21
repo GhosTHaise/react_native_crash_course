@@ -9,15 +9,14 @@ import { getAllPosts } from '../../lib/appwrite'
 import useAppwrite from '../../lib/useAppwrite'
 
 const Home = () => {
-    const { data: posts } = useAppwrite(getAllPosts)
+    const { data: posts, refetch, isLoading } = useAppwrite(getAllPosts)
 
     const [refreshing, setRefreshing] = useState(false)
-
-    console.log(posts);
 
     const onRefresh = async () => {
         setRefreshing(true);
         //re call videos -> if any new videos appeared
+        await refetch();
         setRefreshing(false);
     }
     return (
@@ -25,11 +24,11 @@ const Home = () => {
             className='bg-primary h-full'
         >
             <FlatList
-                data={[{ $id: 1 }]}
+                data={posts}
                 keyExtractor={(item) => item.$id}
                 renderItem={({ item }) => (
                     <Text className='text-3xl text-white'>
-                        {item.$id}
+                        {item.title}
                     </Text>
                 )}
                 ListHeaderComponent={() => (
