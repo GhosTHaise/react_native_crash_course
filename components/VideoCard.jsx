@@ -1,8 +1,9 @@
-import { View, Text, Image } from 'react-native'
-import React from 'react'
+import { View, Text, Image, TouchableOpacity } from 'react-native'
+import React, { useState } from 'react'
 import { icons } from '../constants'
 
 const VideoCard = ({ video: { title, thumbnail, video, users: { username, avatar } } }) => {
+    const [play, setPlay] = useState(false)
     return (
         <View className='flex-col items-center px-4 mb-14'>
             <View className='flex-row gap-3 items-start'>
@@ -26,6 +27,21 @@ const VideoCard = ({ video: { title, thumbnail, video, users: { username, avatar
                     resizeMode='contain'
                 />
             </View>
+            {
+                play ? (
+                    <Text>Playing</Text>
+                ) : (
+                    <TouchableOpacity
+                        className='w-full h-60 rounded-xl relative justify-center items-center'
+                    >
+                        <Image
+                            source={{ uri: thumbnail }}
+                            className='w-full h-full rounded-xl mt-3'
+                            resizeMode='cover'
+                        />
+                    </TouchableOpacity>
+                )
+            }
         </View>
     )
 }
