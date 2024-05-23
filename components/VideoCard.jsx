@@ -29,10 +29,11 @@ const VideoCard = ({ video: { title, thumbnail, video, users: { username, avatar
             </View>
             {
                 play ? (
-                    <Text>Playing</Text>
+                    <Text className='text-white'>Playing</Text>
                 ) : (
                     <TouchableOpacity
                         activeOpacity={0.7}
+                        onPress={() => setPlay(true)}
                         className='w-full h-60 rounded-xl mt-3 relative justify-center items-center'
                     >
                         <Image
