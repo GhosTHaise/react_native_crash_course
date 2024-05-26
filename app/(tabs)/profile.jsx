@@ -3,15 +3,16 @@ import React, { useEffect } from 'react'
 import { SafeAreaView } from 'react-native-safe-area-context'
 import SearchInput from '../../components/SearchInput'
 import EmptyState from '../../components/EmptyState'
-import { searchPosts } from '../../lib/appwrite'
+import { getUserPosts, searchPosts } from '../../lib/appwrite'
 import useAppwrite from '../../lib/useAppwrite'
 import VideoCard from '../../components/VideoCard'
-import { useLocalSearchParams } from 'expo-router'
+
+import { useGlobalContext } from '../../context/globalProvider'
 
 const Profile = () => {
-    const { query } = useLocalSearchParams()
+    const { user, setUser, setIsLoggedIn } = useGlobalContext();
 
-    const { data: posts, refetch } = useAppwrite(() => searchPosts(query));
+    const { data: posts, refetch } = useAppwrite(() => getUserPosts(user.$id));
 
     useEffect(() => {
         refetch()
