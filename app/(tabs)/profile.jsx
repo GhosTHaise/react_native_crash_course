@@ -11,13 +11,8 @@ import { useGlobalContext } from '../../context/globalProvider'
 
 const Profile = () => {
     const { user, setUser, setIsLoggedIn } = useGlobalContext();
-
     const { data: posts, refetch } = useAppwrite(() => getUserPosts(user.$id));
-
-    useEffect(() => {
-        refetch()
-    }, [query])
-
+    console.log(posts);
     return (
         <SafeAreaView
             className='bg-primary h-full'
@@ -36,10 +31,10 @@ const Profile = () => {
                             Search Results
                         </Text>
                         <Text className='text-2xl font-psemibold text-white'>
-                            {query}
+                            {/* {query} */}
                         </Text>
                         <View className='mt-6 mb-8'>
-                            <SearchInput initialQuery={query} />
+                            {/* <SearchInput initialQuery={query} /> */}
                         </View>
                     </View>
                 )}
