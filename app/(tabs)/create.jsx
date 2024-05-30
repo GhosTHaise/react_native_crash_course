@@ -4,8 +4,10 @@ import { SafeAreaView } from 'react-native-safe-area-context'
 import FormField from '../../components/FormField'
 import { ResizeMode, Video } from 'expo-av'
 import { icons } from '../../constants'
+import CustomButton from '../../components/CustomButton'
 
 const Create = () => {
+    const [uploading, setUploading] = useState(false);
     const [form, setForm] = useState({
         title: "",
         video: null,
@@ -13,6 +15,9 @@ const Create = () => {
         prompt: null
     })
 
+    const handleSubmit = () => {
+
+    }
     return (
         <SafeAreaView
             className='bg-primary h-full'
@@ -101,6 +106,13 @@ const Create = () => {
                     placeholder="The prompt you used to create this video"
                     handleChangeText={(e) => setForm({ ...form, prompt: e })}
                     otherStyles="mt-7"
+                />
+
+                <CustomButton
+                    title="Submit & Publish"
+                    handlePress={handleSubmit}
+                    containerStyles="mt-7"
+                    isLoading={uploading}
                 />
             </ScrollView>
         </SafeAreaView>
