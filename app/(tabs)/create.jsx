@@ -27,7 +27,7 @@ const Create = () => {
                 <FormField
                     title="Video Title"
                     value={form.title}
-                    placeholder="GGive your video a cache title ..."
+                    placeholder="Give your video a cache title ..."
                     handleChangeText={(e) => setForm({ ...form, title: e })}
                     otherStyles="mt-10"
                 />
@@ -94,6 +94,14 @@ const Create = () => {
                         }
                     </TouchableOpacity>
                 </View>
+
+                <FormField
+                    title="AI prompt"
+                    value={form.prompt}
+                    placeholder="The prompt you used to create this video"
+                    handleChangeText={(e) => setForm({ ...form, prompt: e })}
+                    otherStyles="mt-7"
+                />
             </ScrollView>
         </SafeAreaView>
     )
