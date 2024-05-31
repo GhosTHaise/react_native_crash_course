@@ -15,6 +15,10 @@ const Create = () => {
         prompt: null
     })
 
+    const openPicker = async (selectType) => {
+
+    }
+
     const handleSubmit = () => {
 
     }
@@ -41,7 +45,9 @@ const Create = () => {
                     <Text className='text-base text-gray-100 font-p-medium'>
                         Upload Video
                     </Text>
-                    <TouchableOpacity>
+                    <TouchableOpacity
+                        onPress={() => openPicker('video')}
+                    >
                         {
                             form.video ?
                                 <Video
@@ -73,7 +79,9 @@ const Create = () => {
                     <Text className='text-base text-gray-100 font-p-medium'>
                         Thumbmail Image
                     </Text>
-                    <TouchableOpacity>
+                    <TouchableOpacity
+                        onPress={() => openPicker('image')}
+                    >
                         {
                             form.thumbnail ?
                                 <Image
