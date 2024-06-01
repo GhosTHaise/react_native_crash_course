@@ -6,6 +6,7 @@ import { ResizeMode, Video } from 'expo-av'
 import { icons } from '../../constants'
 import CustomButton from '../../components/CustomButton'
 import * as DocumentPicker from "expo-document-picker"
+import { router } from 'expo-router'
 
 const Create = () => {
     const [uploading, setUploading] = useState(false);
@@ -37,7 +38,29 @@ const Create = () => {
     }
 
     const handleSubmit = () => {
+        if (!form.prompt || !form.title || !form.thumbnail || !form.video) {
+            return Alert.alert("Please fill all the fields !")
+        }
 
+        setUploading(true)
+
+        try {
+
+
+            Alert.alert("Success", "Post uploaded successfully!");
+            router.push("/home")
+        } catch (error) {
+            Alert.alert("Error", error.message)
+        } finally {
+            setForm({
+                title: "",
+                video: null,
+                thumbnail: null,
+                prompt: null
+            })
+
+            setUploading(false)
+        }
     }
     return (
         <SafeAreaView
