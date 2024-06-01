@@ -54,15 +54,15 @@ const _layout = () => {
                     }}
                 />
                 <Tabs.Screen
-                    name='bookmark'
+                    name='profile'
                     options={{
-                        title: "Bookmark",
+                        title: "Profile",
                         headerShown: false,
                         tabBarIcon: ({ color, focused }) => (
                             <TabIcon
-                                icon={icons.bookmark}
+                                icon={icons.home}
                                 color={color}
-                                name="Bookmark"
+                                name="Profile"
                                 focused={focused}
                             />
                         )
@@ -84,15 +84,15 @@ const _layout = () => {
                     }}
                 />
                 <Tabs.Screen
-                    name='profile'
+                    name='bookmark'
                     options={{
-                        title: "Profile",
+                        title: "Bookmark",
                         headerShown: false,
                         tabBarIcon: ({ color, focused }) => (
                             <TabIcon
-                                icon={icons.home}
+                                icon={icons.bookmark}
                                 color={color}
-                                name="Profile"
+                                name="Bookmark"
                                 focused={focused}
                             />
                         )
