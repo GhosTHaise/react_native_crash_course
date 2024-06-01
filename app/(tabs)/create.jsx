@@ -7,9 +7,12 @@ import { icons } from '../../constants'
 import CustomButton from '../../components/CustomButton'
 import * as DocumentPicker from "expo-document-picker"
 import { router } from 'expo-router'
+import { createVideo } from '../../lib/appwrite'
+import { useGlobalContext } from '../../context/globalProvider'
 
 const Create = () => {
     const [uploading, setUploading] = useState(false);
+    const { user } = useGlobalContext()
     const [form, setForm] = useState({
         title: "",
         video: null,
@@ -29,15 +32,15 @@ const Create = () => {
         if (!result.canceled) {
             if (selectType === "image") setForm({ ...form, thumbnail: result.assets[0] })
             if (selectType === "video") setForm({ ...form, video: result.assets[0] })
-        } else {
+        }/*  else {
             setTimeout(() => {
                 Alert.alert("Document picked", JSON.stringify(result, null, 2))
             }, 100)
-        }
+        } */
 
     }
 
-    const handleSubmit = () => {
+    const handleSubmit = async () => {
         if (!form.prompt || !form.title || !form.thumbnail || !form.video) {
             return Alert.alert("Please fill all the fields !")
         }
@@ -45,7 +48,12 @@ const Create = () => {
         setUploading(true)
 
         try {
-
+            await createVideo(
+                {
+                    ...form,
+                    userId: user.$id
+                }
+            )
 
             Alert.alert("Success", "Post uploaded successfully!");
             router.push("/home")
@@ -93,7 +101,6 @@ const Create = () => {
                                 <Video
                                     source={{ uri: form.video.uri }}
                                     className='w-full h-64 rounded-2xl'
-                                    useNativeControls
                                     resizeMode={ResizeMode.COVER}
                                     isLooping
                                 />
